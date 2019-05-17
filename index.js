@@ -26,9 +26,11 @@ app.get("/help", function (request, response) {
   response.send("move with /move/direction")
 })
 
-class user() {
-  var name;
-  var location = spawn();
+
+class user {
+  constructor(name, location) {
+    var name;
+    var location = spawn();
 
   function spawn(dungeon) {
     // Get a random location within the dungeonS
@@ -36,10 +38,13 @@ class user() {
     if (location != 1) {
       return location;
     } else {
-      // In case it doesn't pass... Just try again.
-      return spawn();
+        // In case it doesn't pass... Just try again.
+        return spawn();
+      }
     }
+  }
 }
+
 
 // Movement
 app.get("/move/:direction", function(request, response) {
@@ -54,17 +59,18 @@ app.get("/move/:direction", function(request, response) {
   }
 })
 
-function checkMove() {
-  // get user location
-  var movement = {
-  "north": dungeon[][+1][],
-  "south": dungeon[][-1][],
-  "east": dungeon[+1][][],
-  "west": dungeon[-1][][],
-  "up": dungeon[][][+1],
-  "down": dungeon[][][+1]
-  };
-}
+// function checkMove() {
+//   // get user location
+//   var movement = {
+//     "north": dungeon[][+1][],
+//     "south": dungeon[][-1][],
+//     "east": dungeon[+1][][],
+//     "west": dungeon[-1][][],
+//     "up": dungeon[][][+1],
+//     "down": dungeon[][][+1]
+//   };
+// }
+
 
 
 // Building the dungeon
@@ -111,7 +117,7 @@ function generateDungeon() {
 // Print dungeon out to view in log.
 console.log(dungeon)
 return dungeon;
-}
+
 
 
 // Boilerplate for Node
