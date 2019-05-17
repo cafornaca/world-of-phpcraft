@@ -1,16 +1,16 @@
 {
-  "name": "node-js-sample",
+  "name": "demo",
   "version": "0.2.0",
-  "description": "A sample Node.js app using Express 4",
+  "description": " ",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.17.0"
   },
   "engines": {
-    "node": "4.0.0"
+    "node": "10.15.3"
   },
   "repository": {
     "type": "git",
@@ -21,9 +21,6 @@
     "heroku",
     "express"
   ],
-  "author": "Mark Pundsack",
-  "contributors": [
-    "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com)"
-  ],
+  "author": "Char",
   "license": "MIT"
 }
