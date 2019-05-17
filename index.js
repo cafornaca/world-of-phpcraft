@@ -47,23 +47,26 @@ function getDungeonSize(min, max) {
 var dungeonSize = getDungeonSize(4, 7);
 
 // 0 = Invisible; 1 = Solid
-
 function generateDungeon() {
   var dungeon = [];
+  // rooms in dungeon
   for (var i = 0; i < dungeonSize; i++) {
     dungeon[i] = [];
+    // dimension of dungeon
     for (var j = 0; j < dungeonSize; j++){
-        dungeon[j] = [];
+        dungeon[i][j] = [];
+        // depth of dungeon
         for (var k = 0; k < dungeonSize; k++){
-          if (j === 0 || i === 0 || j === dungeonSize-1 || i === dungeonSize-1 || k === dungeonSize-1 ){
-            dungeon[i].push(1) // Push walls
+          if ( k === 0 || k === dungeonSize-1 || j === 0 || i === 0 || j === dungeonSize-1 || i === dungeonSize-1 ) {
+            dungeon[i][j].push(1) // Push walls, roof, bedrock
           } else {
-            dungeon[i].push(0) // Push interior
+            dungeon[i][j].push(0) // Push interior
           }
         }
     }
   }
-  console.log(dungeon)
+// Print dungeon out to view in log.
+console.log(dungeon)
 }
 
 
