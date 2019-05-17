@@ -1,12 +1,17 @@
 // Boilerplate
 var express = require("express")
 var app = express()
+//var io = require("socket.io")(server)
 
 app.set("port", (process.env.PORT || 5000))
 
 // Express helps sanitize user input amongst other purposes.
 app.use(express.static(__dirname + "/public"))
 
+// Socket listening for chat
+//io.on("connection", (socket) => {
+//  console.log("New player connected.")
+//})
 
 // Wecome and help
 app.get("/", function(request, response) {
@@ -21,6 +26,20 @@ app.get("/help", function (request, response) {
   response.send("move with /move/direction")
 })
 
+class user() {
+  var name;
+  var location = spawn();
+
+  function spawn(dungeon) {
+    // Get a random location within the dungeonS
+    location = dungeon[getDungeonSize(1, dungeonSize-2)][getDungeonSize(1, dungeonSize-2)][getDungeonSize(1, dungeonSize-2)];
+    if (location != 1) {
+      return location;
+    } else {
+      // In case it doesn't pass... Just try again.
+      return spawn();
+    }
+}
 
 // Movement
 app.get("/move/:direction", function(request, response) {
@@ -35,9 +54,22 @@ app.get("/move/:direction", function(request, response) {
   }
 })
 
-// Build the map
+function checkMove() {
+  // get user location
+  var movement = {
+  "north": dungeon[][+1][],
+  "south": dungeon[][-1][],
+  "east": dungeon[+1][][],
+  "west": dungeon[-1][][],
+  "up": dungeon[][][+1],
+  "down": dungeon[][][+1]
+  };
+}
 
-// Pick a  basic dungeon size
+
+// Building the dungeon
+
+// Helper function to generate dungeon size.
 function getDungeonSize(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -48,10 +80,14 @@ function getDungeonSize(min, max) {
   // -- ceiling or ground: cannot pass --
   // -- basement 1 --
   // -- basement 2 --
-  // -- basement n --
   // -- bedrock: cannot pass --
 const minDungeon = 4;
-var dungeonSize = getDungeonSize(minDungeon, 7);
+
+// Maximum dungeon size can be scaled later on. Leaving it an arbitrary number for now.
+const maxDungeon = 10;
+
+// Get dungeonSize using helper function above.
+var dungeonSize = getDungeonSize(minDungeon, maxDungeon);
 
 // 0 = Invisible; 1 = Solid
 function generateDungeon() {
@@ -74,6 +110,7 @@ function generateDungeon() {
   }
 // Print dungeon out to view in log.
 console.log(dungeon)
+return dungeon;
 }
 
 
