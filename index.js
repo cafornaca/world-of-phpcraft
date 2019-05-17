@@ -1,24 +1,33 @@
 // Boilerplate
 var express = require("express")
 var app = express()
-//var io = require("socket.io")(server)
+var io = require("socket.io")(server)
 
 app.set("port", (process.env.PORT || 5000))
+app.set("view engine", "ejs")
 
 // Express helps sanitize user input amongst other purposes.
 app.use(express.static(__dirname + "/public"))
 
 // Socket listening for chat
-//io.on("connection", (socket) => {
-//  console.log("New player connected.")
-//})
+io.on("connection", (socket) => {
+ console.log("New player connected.")
+ socket.user = new user
 
-// Wecome and help
-app.get("/", function(request, response) {
+ // Listen and send chats
+ socket.on("newMessage", (data) => {
+   io.sockets.emit("new_message", {message: data.message, name: socket.name});
+ })
+})
+
 
 // Build dungeon upon entering
 generateDungeon(dungeonSize)
 
+
+// Wecome and help
+app.get("/", function(request, response) {
+  response.render("index")
   response.send("It's dangerous to go alone! Use /help for instructions.")
 })
 
@@ -29,8 +38,15 @@ app.get("/help", function (request, response) {
 
 class user {
   constructor(name, location) {
-    var name;
+    socket.name = "Newb";
     var location = spawn();
+  }
+
+  function setName(){
+    socket.on("setName", (data) => {
+      socket.name = data.name
+    })
+  }
 
   function spawn(dungeon) {
     // Get a random location within the dungeonS
@@ -42,8 +58,9 @@ class user {
         return spawn();
       }
     }
-  }
+
 }
+
 
 
 // Movement
