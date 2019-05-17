@@ -1,0 +1,7 @@
+{
+  "name": "php-heroku-boilerplate",
+  "description": "PHP that can be deployed to Heroku",
+  "repository": "https://github.com/jesperorb/php-heroku-boilerplate",
+  "keywords": ["php", "boilerplate"],
+  "addons": []
+}
