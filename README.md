@@ -9,4 +9,4 @@ Sometimes that's just how it is.
 * Scale up dungeon size and adjust for more players
 
 ## Where can I access this?
-Technically via https://world-of-phpcraft.herokuapp.com/
+Technically via https://world-of-phpcraft.herokuapp.com/ when it isn't in limbo. Check out my source code in index.js to see the inner workings in the meantime!
