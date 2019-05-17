@@ -42,11 +42,11 @@ class user {
     var location = spawn();
   }
 
-  function setName(){
-    socket.on("setName", (data) => {
-      socket.name = data.name
-    })
-  }
+//  function setName() {
+  //  socket.on("setName", (data) => {
+    //  socket.name = data.name
+  //  })
+  //}
 
   function spawn(dungeon) {
     // Get a random location within the dungeonS
