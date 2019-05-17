@@ -2,9 +2,11 @@
     "autoload": {
         "psr-4": {
             "MyApp\\": "src"
-        }
+        },
+        "classmap": ["/"]
     },
     "require": {
+       "php": "^7.1.0",
         "cboden/ratchet": "^0.4"
     }
 }

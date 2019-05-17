@@ -1,0 +1,16 @@
+{
+  "name": "php-heroku-boilerplate",
+  "version": "1.0.0",
+  "description": "PHP with Gulp that can be deployed to Heroku",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start" : "gulp"
+  },
+  "author": "Jesper Orb",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-connect-php": "0.0.8"
+  }
+}
