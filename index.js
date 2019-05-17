@@ -8,6 +8,11 @@ app.get('/', function(request, response) {
   response.send('Hello World!')
 })
 
+app.get('/move/:direction', function(request, response) {
+  var direction = request.params[0]
+  response.send("You move " + direction + ".")
+})
+
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 })
