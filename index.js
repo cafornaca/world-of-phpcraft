@@ -3,14 +3,16 @@ var express = require("express")
 var app = express()
 
 app.set("port", (process.env.PORT || 5000))
+
+// Express helps sanitize user input amongst other purposes.
 app.use(express.static(__dirname + "/public"))
 
 
 // Wecome and help
 app.get("/", function(request, response) {
 
-// TESTING //
-  generateDungeon(dungeonSize)
+// Build dungeon upon entering
+generateDungeon(dungeonSize)
 
   response.send("It's dangerous to go alone! Use /help for instructions.")
 })
@@ -23,7 +25,6 @@ app.get("/help", function (request, response) {
 // Movement
 app.get("/move/:direction", function(request, response) {
   var direction = request.params.direction.toLowerCase()
-  // TODO: Clean input and check validity
 
   var possibleMovement = ["north","south", "east", "west", "up", "down"]
 
@@ -43,8 +44,14 @@ function getDungeonSize(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-// Min/Max can be hardcoded to set a limit
-var dungeonSize = getDungeonSize(4, 7);
+// The minimum dungeon size is 4 to allow at least two explorable floors:
+  // -- ceiling or ground: cannot pass --
+  // -- basement 1 --
+  // -- basement 2 --
+  // -- basement n --
+  // -- bedrock: cannot pass --
+const minDungeon = 4;
+var dungeonSize = getDungeonSize(minDungeon, 7);
 
 // 0 = Invisible; 1 = Solid
 function generateDungeon() {
